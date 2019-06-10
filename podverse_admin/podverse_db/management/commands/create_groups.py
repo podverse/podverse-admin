@@ -40,6 +40,19 @@ class Command(BaseCommand):
         admin.permissions.add(perm)
         curator.permissions.add(perm)
 
+    paypalOrderCT = ContentType.objects.get(model='paypalorder')
+    paypalOrderPerms = Permission.objects.filter(content_type=paypalOrderCT)
+
+    for perm in paypalOrderPerms:
+        admin.permissions.add(perm)
+
+    playlistCT = ContentType.objects.get(model='playlist')
+    playlistPerms = Permission.objects.filter(content_type=playlistCT)
+
+    for perm in playlistPerms:
+        admin.permissions.add(perm)
+        curator.permissions.add(perm)
+
     podcastCT = ContentType.objects.get(model='podcast')
     podcastPerms = Permission.objects.filter(content_type=podcastCT)
     
