@@ -13,6 +13,13 @@ class Command(BaseCommand):
         admin.permissions.add(perm)
         curator.permissions.add(perm)
 
+    categoryCT = ContentType.objects.get(model='category')
+    categoryPerms = Permission.objects.filter(content_type=categoryCT)
+
+    for perm in categoryPerms:
+        admin.permissions.add(perm)
+        curator.permissions.add(perm)
+
     episodeCT = ContentType.objects.get(model='episode')
     episodePerms = Permission.objects.filter(content_type=episodeCT)
 
