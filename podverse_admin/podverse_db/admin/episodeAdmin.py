@@ -13,7 +13,7 @@ class EpisodeAdmin(admin.ModelAdmin):
     list_display = ('title', 'id', 'get_podcast_title', 'isPublic',)
     list_editable = ('isPublic',)
     ordering = ('-updatedAt',)
-    search_fields = ('title', 'id',)
+    search_fields = ('id', 'title',)
 
     def get_podcast_title(self, obj):
         return obj.podcast.title

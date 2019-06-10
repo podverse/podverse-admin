@@ -14,7 +14,7 @@ class PodcastAdmin(admin.ModelAdmin):
     list_display = ('title', 'id', 'isPublic',)
     list_editable = ('isPublic',)
     ordering = ('-updatedAt',)
-    search_fields = ('title', 'id',)
+    search_fields = ('id', 'title',)
 
     def get_readonly_fields(self, request, obj=None):
         fields = [f.name for f in self.model._meta.fields]

@@ -1,11 +1,17 @@
 from django.contrib.auth.models import Group, Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.management import BaseCommand
-from podverse_db.models import Podcast
 
 class Command(BaseCommand):
     admin, adminCreated = Group.objects.get_or_create(name='Admin')
     curator, curatorCreated = Group.objects.get_or_create(name='Curator')
+
+    authorCT = ContentType.objects.get(model='author')
+    authorPerms = Permission.objects.filter(content_type=authorCT)
+
+    for perm in authorPerms:
+        admin.permissions.add(perm)
+        curator.permissions.add(perm)
 
     episodeCT = ContentType.objects.get(model='episode')
     episodePerms = Permission.objects.filter(content_type=episodeCT)
