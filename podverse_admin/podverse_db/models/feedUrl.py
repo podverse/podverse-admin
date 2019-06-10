@@ -15,8 +15,8 @@ class FeedUrl(models.Model):
     class Meta:
         managed: False
         db_table = 'feedUrls'
-        verbose_name = 'Feed Url'
-        verbose_name_plural = 'Feed Urls'
+        verbose_name = 'FeedUrl'
+        verbose_name_plural = 'FeedUrls'
 
     def __str__(self):
         return self.id

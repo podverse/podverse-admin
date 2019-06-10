@@ -13,7 +13,7 @@ class Command(BaseCommand):
         admin.permissions.add(perm)
         curator.permissions.add(perm)
 
-    categoryCT = ContentType.objects.get(model='category')
+    categoryCT = ContentType.objects.get(app_label='podverse_db', model='category')
     categoryPerms = Permission.objects.filter(content_type=categoryCT)
 
     for perm in categoryPerms:
@@ -34,16 +34,22 @@ class Command(BaseCommand):
         admin.permissions.add(perm)
         curator.permissions.add(perm)
 
-    groupCT = ContentType.objects.get(model='group')
-    groupPerms = Permission.objects.filter(content_type=groupCT)
-
-    for perm in groupPerms:
-        admin.permissions.add(perm)
-
-    userCT = ContentType.objects.get(model='user')
+    userCT = ContentType.objects.get(app_label="podverse_db", model='user')
     userPerms = Permission.objects.filter(content_type=userCT)
 
     for perm in userPerms:
+        admin.permissions.add(perm)
+
+    djangoGroupCT = ContentType.objects.get(app_label="auth", model='group')
+    djangoGroupPerms = Permission.objects.filter(content_type=djangoGroupCT)
+
+    for perm in djangoGroupPerms:
+        admin.permissions.add(perm)
+
+    djangoUserCT = ContentType.objects.get(app_label="auth", model='user')
+    djangoUserPerms = Permission.objects.filter(content_type=djangoUserCT)
+
+    for perm in djangoUserPerms:
         admin.permissions.add(perm)
 
     def handle(self, *args, **options):
