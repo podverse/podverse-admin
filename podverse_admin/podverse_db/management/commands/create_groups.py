@@ -13,6 +13,12 @@ class Command(BaseCommand):
         admin.permissions.add(perm)
         curator.permissions.add(perm)
 
+    bitpayInvoiceCT = ContentType.objects.get(app_label='podverse_db', model='bitpayinvoice')
+    bitpayInvoicePerms = Permission.objects.filter(content_type=bitpayInvoiceCT)
+
+    for perm in bitpayInvoicePerms:
+        admin.permissions.add(perm)
+
     categoryCT = ContentType.objects.get(app_label='podverse_db', model='category')
     categoryPerms = Permission.objects.filter(content_type=categoryCT)
 
@@ -24,6 +30,13 @@ class Command(BaseCommand):
     episodePerms = Permission.objects.filter(content_type=episodeCT)
 
     for perm in episodePerms:
+        admin.permissions.add(perm)
+        curator.permissions.add(perm)
+
+    feedUrlCT = ContentType.objects.get(model='feedurl')
+    feedUrlPerms = Permission.objects.filter(content_type=feedUrlCT)
+
+    for perm in feedUrlPerms:
         admin.permissions.add(perm)
         curator.permissions.add(perm)
 

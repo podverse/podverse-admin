@@ -1,4 +1,5 @@
 from podverse_db.admin.authorAdmin import AuthorAdmin
+from podverse_db.admin.bitpayInvoiceAdmin import BitPayInvoiceAdmin
 from podverse_db.admin.categoryAdmin import CategoryAdmin
 from podverse_db.admin.episodeAdmin import EpisodeAdmin
 from podverse_db.admin.feedUrlAdmin import FeedUrlAdmin
