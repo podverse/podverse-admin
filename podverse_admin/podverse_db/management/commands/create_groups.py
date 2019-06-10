@@ -14,5 +14,12 @@ class Command(BaseCommand):
         admin.permissions.add(perm)
         curator.permissions.add(perm)
 
+    episodeCT = ContentType.objects.get(model='episode')
+    episodePerms = Permission.objects.filter(content_type=episodeCT)
+
+    for perm in episodePerms:
+        admin.permissions.add(perm)
+        curator.permissions.add(perm)
+
     def handle(self, *args, **options):
         self.stdout.write("Groups created.")
