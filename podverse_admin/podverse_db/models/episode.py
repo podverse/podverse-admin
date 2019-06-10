@@ -1,7 +1,10 @@
 from django.db import models
+from .podcast import Podcast
 
 class Episode(models.Model):
     id = models.CharField(max_length=14, primary_key=True)
+
+    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, db_column='podcastId')
 
     description = models.TextField(blank=True)
     duration = models.PositiveIntegerField(default=0)
