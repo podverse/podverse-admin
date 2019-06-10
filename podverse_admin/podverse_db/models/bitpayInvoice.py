@@ -4,7 +4,7 @@ from .user import User
 class BitPayInvoice(models.Model):
     id = models.CharField(max_length=14, primary_key=True)
 
-    # owner = models.ForeignKey(User, on_delete=models.CASCADE, db_column='ownerId')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, db_column='ownerId')
 
     orderId = models.CharField(max_length=2084, unique=True)
     amountPaid = models.IntegerField(default=0)

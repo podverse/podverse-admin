@@ -4,7 +4,12 @@ from .podcast import Podcast
 class FeedUrl(models.Model):
     id = models.CharField(max_length=14, primary_key=True)
 
-    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, db_column='podcastId')
+    podcast = models.ForeignKey(
+        Podcast,
+        on_delete=models.CASCADE,
+        db_column='podcastId',
+        blank=True
+    )
 
     isAuthority = models.BooleanField()
     url = models.URLField(unique=True)
