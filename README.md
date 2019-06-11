@@ -10,3 +10,8 @@ You'll need to make sure you have [Python and virutalenv](https://packaging.pyth
 
 For more information on Django, please refer to the [documentation](https://docs.djangoproject.com/en/2.2/intro/tutorial01/).
 
+## Dependencies
+
+django?
+shortuuid?
+???

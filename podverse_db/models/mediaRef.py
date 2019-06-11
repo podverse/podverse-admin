@@ -1,37 +1,32 @@
 from django.db import models
-from .podcast import Podcast
+from .episode import Episode
+from .user import User
 
-class Episode(models.Model):
+class MediaRef(models.Model):
     id = models.CharField(max_length=14, primary_key=True)
 
-    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, db_column='podcastId')
-
-    description = models.TextField(blank=True)
-    duration = models.PositiveIntegerField(default=0)
-    episodeType = models.CharField(max_length=2084, blank=True)
-    guid = models.CharField(max_length=2084, blank=True)
-    imageUrl = models.URLField(blank=True)
-    isExplicit = models.BooleanField()
-    isPublic = models.BooleanField()
-    linkUrl = models.URLField(blank=True)
-    mediaFilesize = models.PositiveIntegerField(default=0)
-    mediaType = models.CharField(max_length=2084, blank=True)
-    mediaUrl = models.URLField(unique=True)
+    endTime = models.PositiveIntegerField(default=0, blank=True)
+    isPublic = models.BooleanField(default=False)
     pastHourTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Hour')
     pastDayTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Day')
     pastWeekTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Week')
     pastMonthTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Month')
     pastYearTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Year')
     pastAllTimeTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - All Time')
-    pubDate = models.DateTimeField(blank=True)
+    startTime = models.PositiveIntegerField(default=0)
     title = models.CharField(max_length=2084, blank=True)
+
+    episode = models.ForeignKey(Episode, on_delete=models.CASCADE, db_column='episodeId')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, db_column='ownerId', blank=True)
 
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
 
     class Meta:
         managed: False
-        db_table = 'episodes'
+        db_table = 'mediaRefs'
+        verbose_name = 'MediaRef'
+        verbose_name_plural = 'MediaRefs'
 
     def __str__(self):
-        return self.title
+        return self.id

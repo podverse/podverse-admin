@@ -1,18 +1,17 @@
 from django.db import models
 from .podcast import Podcast
+import shortuuid
 
 class FeedUrl(models.Model):
-    id = models.CharField(max_length=14, primary_key=True)
+    def shortid():
+        return shortuuid.ShortUUID().random(length=14)
 
-    podcast = models.ForeignKey(
-        Podcast,
-        on_delete=models.CASCADE,
-        db_column='podcastId',
-        blank=True
-    )
+    id = models.CharField(max_length=14, primary_key=True, default=shortid)
 
-    isAuthority = models.BooleanField()
+    isAuthority = models.BooleanField(default=False)
     url = models.URLField(unique=True)
+
+    podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, db_column='podcastId', blank=True)
 
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)

@@ -7,7 +7,7 @@ class User(models.Model):
     email = models.EmailField(unique=True)
     emailVerified = models.BooleanField()
     freeTrialExpiration = models.DateTimeField(blank=True)
-    isPublic = models.BooleanField()
+    isPublic = models.BooleanField(default=False)
     membershipExpiration = models.DateTimeField(blank=True)
     name = models.CharField(max_length=2084, blank=True)
     roles = ArrayField(
@@ -15,21 +15,6 @@ class User(models.Model):
         size=20,
         default=list
     )
-    subscribedPlaylistIds = ArrayField(
-        models.CharField(max_length=14),
-        size=20,
-        default=list
-    )
-    subscribedPodcastIds = ArrayField(
-        models.CharField(max_length=14),
-        size=20,
-        default=list
-    )
-    subscribedUserIds = ArrayField(
-        models.CharField(max_length=14),
-        size=20,
-        default=list
-    )   
 
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)

@@ -3,6 +3,7 @@ from podverse_db.admin.bitpayInvoiceAdmin import BitPayInvoiceAdmin
 from podverse_db.admin.categoryAdmin import CategoryAdmin
 from podverse_db.admin.episodeAdmin import EpisodeAdmin
 from podverse_db.admin.feedUrlAdmin import FeedUrlAdmin
+from podverse_db.admin.logEntryAdmin import LogEntryAdmin
 from podverse_db.admin.mediaRefAdmin import MediaRefAdmin
 from podverse_db.admin.paypalOrderAdmin import PayPalOrderAdmin
 from podverse_db.admin.playlistAdmin import PlaylistAdmin

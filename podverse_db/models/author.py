@@ -1,4 +1,5 @@
 from django.db import models
+from .podcast import Podcast
 
 class Author(models.Model):
     id = models.CharField(max_length=14, primary_key=True)
