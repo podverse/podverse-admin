@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ['DEBUG'] or True
 
 ALLOWED_HOSTS = []
 
@@ -79,19 +79,19 @@ DATABASE_ROUTERS = ('podverse_db.dbrouters.PodverseDBRouter',)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'mysecretpw',
-        'HOST': '127.0.0.1',
-        'PORT': '5001',
+        'NAME': os.environ['ADMIN_DB_NAME'],
+        'USER': os.environ['ADMIN_DB_USER'],
+        'PASSWORD': os.environ['ADMIN_DB_PASSWORD'],
+        'HOST': os.environ['ADMIN_DB_HOST'],
+        'PORT': os.environ['ADMIN_DB_PORT']
     },
     'podverse_db': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'mysecretpw',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': os.environ['PODVERSE_DB_NAME'],
+        'USER': os.environ['PODVERSE_DB_USER'],
+        'PASSWORD': os.environ['PODVERSE_DB_PASSWORD'],
+        'HOST': os.environ['PODVERSE_DB_HOST'],
+        'PORT': os.environ['PODVERSE_DB_PORT']
     }
 }
 
