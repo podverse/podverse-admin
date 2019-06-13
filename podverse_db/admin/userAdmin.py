@@ -1,10 +1,6 @@
 from django.contrib import admin
 from podverse_db.models import User
 
-admin.site.site_header = 'Database Admin'
-admin.site.index_title = 'Podverse'
-admin.site.site_title = 'Admin'
-
 class UserAdmin(admin.ModelAdmin):
     fields = ('id', 'email', 'emailVerified', 'freeTrialExpiration', 'isPublic', 'membershipExpiration',
         'name', 'roles', 'createdAt', 'updatedAt',)

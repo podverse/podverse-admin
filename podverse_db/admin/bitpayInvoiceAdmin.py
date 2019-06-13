@@ -2,10 +2,6 @@
 from django.contrib import admin
 from podverse_db.models import BitPayInvoice
 
-admin.site.site_header = 'Database Admin'
-admin.site.index_title = 'Podverse'
-admin.site.site_title = 'Admin'
-
 class BitPayInvoiceAdmin(admin.ModelAdmin):
     fields = ('id', 'orderId', 'owner', 'amountPaid', 'currency', 'exceptionStatus', 'price', 'status',
       'transactionCurrency', 'transactionSpeed', 'url', 'createdAt', 'updatedAt',)

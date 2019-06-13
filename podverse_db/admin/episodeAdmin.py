@@ -1,10 +1,6 @@
 from django.contrib import admin
 from podverse_db.models import Episode
 
-admin.site.site_header = 'Database Admin'
-admin.site.index_title = 'Podverse'
-admin.site.site_title = 'Admin'
-
 class EpisodeAdmin(admin.ModelAdmin):
     fields = ('id', 'podcast', 'title', 'isPublic', 'description', 'duration', 'episodeType', 'guid', 'imageUrl',
         'isExplicit', 'linkUrl', 'mediaFilesize', 'mediaType', 'mediaUrl', 'pastHourTotalUniquePageviews',

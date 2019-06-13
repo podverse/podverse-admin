@@ -1,10 +1,6 @@
 from django.contrib import admin
 from podverse_db.models import Playlist
 
-admin.site.site_header = 'Database Admin'
-admin.site.index_title = 'Podverse'
-admin.site.site_title = 'Admin'
-
 class PlaylistAdmin(admin.ModelAdmin):
     fields = ('id', 'owner', 'title', 'description', 'isPublic', 'itemCount', 'createdAt', 'updatedAt',)
     list_display = ('id', 'get_owner_email', 'title',)

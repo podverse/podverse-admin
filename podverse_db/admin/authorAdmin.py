@@ -1,9 +1,9 @@
 from django.contrib import admin
 from podverse_db.models import Author
 
-admin.site.site_header = 'Database Admin'
-admin.site.index_title = 'Podverse'
-admin.site.site_title = 'Admin'
+admin.site.site_header = 'Podverse Admin'
+admin.site.index_title = 'Home'
+admin.site.site_title = 'Podverse Admin'
 
 class AuthorAdmin(admin.ModelAdmin):
     fields = ('id', 'name', 'slug', 'createdAt', 'updatedAt',)

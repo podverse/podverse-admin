@@ -1,10 +1,6 @@
 from django.contrib import admin
 from podverse_db.models import FeedUrl
 
-admin.site.site_header = 'Database Admin'
-admin.site.index_title = 'Podverse'
-admin.site.site_title = 'Admin'
-
 class FeedUrlAdmin(admin.ModelAdmin):
     fields = ('id', 'podcast', 'isAuthority', 'url', 'createdAt', 'updatedAt',)
     list_display = ('id', 'get_podcast_title', 'url', 'isAuthority',)

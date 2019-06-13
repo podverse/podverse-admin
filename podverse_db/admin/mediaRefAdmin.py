@@ -1,10 +1,6 @@
 from django.contrib import admin
 from podverse_db.models import MediaRef
 
-admin.site.site_header = 'Database Admin'
-admin.site.index_title = 'Podverse'
-admin.site.site_title = 'Admin'
-
 class MediaRefAdmin(admin.ModelAdmin):
     fields = ('id', 'title', 'episode', 'owner', 'startTime', 'endTime', 'isPublic', 'pastHourTotalUniquePageviews',
         'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews', 'pastMonthTotalUniquePageviews',
