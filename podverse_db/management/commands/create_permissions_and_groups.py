@@ -39,6 +39,7 @@ class Command(BaseCommand):
     episodePerms = Permission.objects.filter(content_type=episodeCT)
     episodePermView = episodePerms[3]
     admin.permissions.add(episodePermView)
+    curator.permissions.add(episodePermView)
 
     # FEEDURL
     feedUrlCT = ContentType.objects.get(model='feedurl')
@@ -85,8 +86,14 @@ class Command(BaseCommand):
     # PODCAST
     podcastCT = ContentType.objects.get(model='podcast')
     podcastPerms = Permission.objects.filter(content_type=podcastCT)
+    podcastPermChange = podcastPerms[1]
+    podcastPermDelete = podcastPerms[2]
     podcastPermView = podcastPerms[3]
+    admin.permissions.add(podcastPermChange)
+    admin.permissions.add(podcastPermDelete)
     admin.permissions.add(podcastPermView)
+    curator.permissions.add(podcastPermChange)
+    curator.permissions.add(podcastPermDelete)
     curator.permissions.add(podcastPermView)
 
     # USER
