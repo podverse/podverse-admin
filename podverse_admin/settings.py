@@ -25,7 +25,7 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ['DEBUG'] or True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', os.environ['DB_HOST']]
 
 
 # Application definition
@@ -74,24 +74,16 @@ WSGI_APPLICATION = 'podverse_admin.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASE_ROUTERS = ('podverse_db.dbrouters.PodverseDBRouter',)
+# DATABASE_ROUTERS = ('podverse_db.dbrouters.PodverseDBRouter',)
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['ADMIN_DB_NAME'],
-        'USER': os.environ['ADMIN_DB_USER'],
-        'PASSWORD': os.environ['ADMIN_DB_PASSWORD'],
-        'HOST': os.environ['ADMIN_DB_HOST'],
-        'PORT': os.environ['ADMIN_DB_PORT']
-    },
-    'podverse_db': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['PODVERSE_DB_NAME'],
-        'USER': os.environ['PODVERSE_DB_USER'],
-        'PASSWORD': os.environ['PODVERSE_DB_PASSWORD'],
-        'HOST': os.environ['PODVERSE_DB_HOST'],
-        'PORT': os.environ['PODVERSE_DB_PORT']
+        'NAME': os.environ['DB_NAME'],
+        'USER': os.environ['DB_USER'],
+        'PASSWORD': os.environ['DB_PASSWORD'],
+        'HOST': os.environ['DB_HOST'],
+        'PORT': os.environ['DB_PORT']
     }
 }
 

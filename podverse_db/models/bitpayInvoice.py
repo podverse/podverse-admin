@@ -21,7 +21,7 @@ class BitPayInvoice(models.Model):
 
     class Meta:
         managed: False
-        db_table = 'bitpayInvoice'
+        db_table = 'bitpayInvoices'
         verbose_name = 'BitPayInvoice'
         verbose_name_plural = 'BitPayInvoices'
 

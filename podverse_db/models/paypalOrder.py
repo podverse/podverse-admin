@@ -12,7 +12,7 @@ class PayPalOrder(models.Model):
 
     class Meta:
         managed: False
-        db_table = 'paypalOrder'
+        db_table = 'paypalOrders'
         verbose_name = 'PayPalOrder'
         verbose_name_plural = 'PayPalOrders'
 
