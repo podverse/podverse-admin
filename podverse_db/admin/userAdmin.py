@@ -1,6 +1,10 @@
-from django.contrib import admin
-from podverse_db.models import User
 import bcrypt
+import shortuuid
+from django.contrib import admin
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from podverse_db.models import User
+from podverse_admin.scripts.mailer import sendNewUserEmail
 
 class UserAdmin(admin.ModelAdmin):
     user_fields = ['id', 'email', 'emailVerified', 'freeTrialExpiration', 'isPublic', 'membershipExpiration',
@@ -19,17 +23,23 @@ class UserAdmin(admin.ModelAdmin):
             return fields
 
     def get_form(self, request, obj=None, **kwargs):
-        if request.user.is_superuser:
-            superuser_fields = self.user_fields + ['password']
-            self.fields = superuser_fields
-        else:
-            self.fields = self.user_fields
-            self.exclude = ['password']
+        self.fields =self.user_fields
         form = super(UserAdmin, self).get_form(request, obj, **kwargs)
         return form
 
     def save_model(self, request, obj, form, change):
-        obj.password = bcrypt.hashpw(obj.password, bcrypt.gensalt())
+        # If is a new user, then randomly generate a password for them.
+        # To log into their account, they will need to use Forgot Password.
+        if not change:
+            password = shortuuid.ShortUUID().random(length=14)
+            obj.password = bcrypt.hashpw(password, bcrypt.gensalt())
         super(UserAdmin, self).save_model(request, obj, form, change)
+
+
+def handlePostSave(sender, instance, **kwargs):
+    if kwargs.get('created'):
+        sendNewUserEmail(instance.email)
+
+post_save.connect(handlePostSave, sender=User)
 
 admin.site.register(User, UserAdmin)
