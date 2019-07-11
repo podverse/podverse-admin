@@ -1,4 +1,4 @@
-from django.db import models
+    from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Podcast(models.Model):
@@ -33,7 +33,7 @@ class Podcast(models.Model):
         db_table = 'podcasts'
     
     def __str__(self):
-        return self.title
+        return self.title or 'Untitled podcast'
 
         
 
