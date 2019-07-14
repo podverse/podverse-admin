@@ -20,7 +20,6 @@ class Podcast(models.Model):
     pastMonthTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Month')
     pastYearTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Year')
     pastAllTimeTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - All Time')
-    priority = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1), MaxValueValidator(5)])
     sortableTitle = models.CharField(max_length=2084, blank=True)
     title = models.CharField(max_length=2084, blank=True)
     type = models.CharField(max_length=2084, blank=True)
