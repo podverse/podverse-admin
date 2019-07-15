@@ -13,9 +13,9 @@ def sendNewUserEmail(receiver):
     topMessage = headerText + ". To log into your account, click the button below, reset your password, then login."
     button = "Reset Password"
     buttonLink = os.environ['NEW_USER_EMAIL_BUTTON_LINK']
-    bottomMessage = "Please let us know if there is anything we can improve."
-    closing = "Thank you :)"
-    name = "Podverse"
+    bottomMessage = ""
+    closing = "Have a nice day :)"
+    name = ""
     address = "Chicago, IL, USA"
     unsubscribeLink = ""
     buttonColor = "#2968B1"
