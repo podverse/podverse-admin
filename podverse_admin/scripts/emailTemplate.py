@@ -156,7 +156,7 @@ def emailTemplate(obj):
                                 </tr>
                                 </tbody>
                             </table>
-                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">{5}</p>
+                            <p style="display: none; font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">{5}</p>
                             <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">{6}</p>
                             <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">{7}</p>
                             </td>
