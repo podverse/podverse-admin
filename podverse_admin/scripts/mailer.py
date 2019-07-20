@@ -4,18 +4,18 @@ from podverse_admin.scripts.emailTemplate import emailTemplate, EmailTemplateObj
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-headerText = "Your Podverse Premium membership has been activated"
+headerText = "Your Podverse Premium membership is ready"
 
 def sendNewUserEmail(receiver):
     #    preheader displays as preview text in some email clients
     preheader = headerText
     greeting = "Hello!"
-    topMessage = headerText + ". To log into your account, click the button below, reset your password, then login."
+    topMessage = headerText + ". Click the button below to reset your password, then login to your new account."
     button = "Reset Password"
     buttonLink = os.environ['NEW_USER_EMAIL_BUTTON_LINK']
-    bottomMessage = ""
+    bottomMessage = "Please let us know if you have any questions or feedback."
     closing = "Have a nice day :)"
-    name = ""
+    name = "Podverse"
     address = "Chicago, IL, USA"
     unsubscribeLink = ""
     buttonColor = "#2968B1"
