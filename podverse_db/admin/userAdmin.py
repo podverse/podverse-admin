@@ -29,7 +29,7 @@ class UserAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         # If is a new user, then randomly generate a password for them.
-        # To log into their account, they will need to use Forgot Password.
+        # To log into their account, they will need to use Reset Password.
         if not change:
             password = shortuuid.ShortUUID().random(length=14)
             obj.password = bcrypt.hashpw(password, bcrypt.gensalt())

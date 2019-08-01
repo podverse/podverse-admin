@@ -10,8 +10,8 @@ def sendNewUserEmail(receiver):
     #    preheader displays as preview text in some email clients
     preheader = headerText
     greeting = "Hello!"
-    topMessage = headerText + ". Click the button below and use the Forgot Password form to set your password, then log into your new account."
-    button = "Forgot Password"
+    topMessage = headerText + ". Click the button below to use the Reset Password form, then log into your new account."
+    button = "Reset Password"
     buttonLink = os.environ['NEW_USER_EMAIL_BUTTON_LINK']
     bottomMessage = ""
     closing = "Have a nice day :)"
