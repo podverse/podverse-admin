@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.conf.urls import url
 
 admin.autodiscover()
 
 urlpatterns = [
-    path('', admin.site.urls)
+    path('', admin.site.urls),
+    url(r'^settings/', include('django_mfa.urls'))
 ]
