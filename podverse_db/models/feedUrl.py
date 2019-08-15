@@ -8,7 +8,7 @@ class FeedUrl(models.Model):
 
     id = models.CharField(max_length=14, primary_key=True, default=shortid)
 
-    isAuthority = models.BooleanField(default=False)
+    isAuthority = models.BooleanField(default=True)
     url = models.URLField(unique=True)
 
     podcast = models.ForeignKey(Podcast, on_delete=models.CASCADE, db_column='podcastId', blank=True)
