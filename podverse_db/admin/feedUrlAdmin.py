@@ -6,7 +6,7 @@ class FeedUrlAdmin(admin.ModelAdmin):
     list_display = ('id', 'get_podcast_title', 'url', 'isAuthority',)
     list_editable = ('isAuthority',)
     ordering = ('-updatedAt',)
-    search_fields = ('id', 'podcast__title', 'url',)
+    search_fields = ('id', 'url',)
     autocomplete_fields = ('podcast',)
 
     def get_podcast_title(self, obj):
