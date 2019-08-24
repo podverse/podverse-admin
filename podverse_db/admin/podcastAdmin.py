@@ -1,5 +1,12 @@
 from django.contrib import admin
-from podverse_db.models import Podcast
+from podverse_db.models import FeedUrl, Podcast
+
+class FeedUrlInline(admin.TabularInline):
+    model = FeedUrl
+    fields = ('id', 'isAuthority', 'url')
+    readonly_fields = ('id',)
+    can_delete = False
+    extra = 0
 
 class PodcastAdmin(admin.ModelAdmin):
     fields = ('id', 'title', 'isPublic', 'description', 'feedLastUpdated', 'guid', 'imageUrl',
@@ -11,6 +18,7 @@ class PodcastAdmin(admin.ModelAdmin):
     list_editable = ('isPublic',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
+    inlines = [ FeedUrlInline ]
 
     def get_readonly_fields(self, request, obj=None):
         fields = [f.name for f in self.model._meta.fields]
