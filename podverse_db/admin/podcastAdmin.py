@@ -3,10 +3,15 @@ from podverse_db.models import FeedUrl, Podcast
 
 class FeedUrlInline(admin.TabularInline):
     model = FeedUrl
-    fields = ('id', 'isAuthority', 'url')
-    readonly_fields = ('id',)
+    classes = ['collapse']
+    fields = ('id', 'isAuthority', 'url',)
+    max_num = 0
     can_delete = False
     extra = 0
+    
+    def has_add_permission(self, request, obj=None):
+        return False
+
 
 class PodcastAdmin(admin.ModelAdmin):
     fields = ('id', 'title', 'isPublic', 'description', 'feedLastUpdated', 'guid', 'imageUrl',
