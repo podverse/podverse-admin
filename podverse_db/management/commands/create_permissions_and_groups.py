@@ -37,8 +37,14 @@ class Command(BaseCommand):
     # EPISODE
     episodeCT = ContentType.objects.get(model='episode')
     episodePerms = Permission.objects.filter(content_type=episodeCT)
+    episodePermChange = episodePerms[1]
+    episodePermDelete = episodePerms[2]
     episodePermView = episodePerms[3]
+    admin.permissions.add(episodePermChange)
+    admin.permissions.add(episodePermDelete)
     admin.permissions.add(episodePermView)
+    curator.permissions.add(episodePermChange)
+    curator.permissions.add(episodePermDelete)
     curator.permissions.add(episodePermView)
 
     # FEEDURL
@@ -99,9 +105,13 @@ class Command(BaseCommand):
     # USER
     userCT = ContentType.objects.get(app_label="podverse_db", model='user')
     userPerms = Permission.objects.filter(content_type=userCT)
+    userPermAdd = userPerms[0]
     userPermChange = userPerms[1]
+    userPermDelete = userPerms[2]
     userPermView = userPerms[3]
+    admin.permissions.add(userPermAdd)
     admin.permissions.add(userPermChange)
+    admin.permissions.add(userPermDelete)
     admin.permissions.add(userPermView)
 
     # DJANGO GROUP

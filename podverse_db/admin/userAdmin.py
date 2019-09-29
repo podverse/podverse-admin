@@ -19,6 +19,8 @@ class UserAdmin(admin.ModelAdmin):
         fields = [f.name for f in self.model._meta.fields]
         if request.user.is_superuser:
             return ['createdAt', 'updatedAt']
+        elif request.user.groups.filter(name='Admin').exists():
+            return ['createdAt', 'updatedAt']
         else:
             return fields
 
