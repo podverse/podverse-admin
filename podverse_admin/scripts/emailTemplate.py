@@ -1,211 +1,200 @@
+import config
+
 def emailTemplate(obj):
-    #    preheader displays as preview text in some email clients
-    preheader = obj.preheader
-    greeting = obj.greeting
-    topMessage = obj.topMessage
-    button = obj.button
     buttonLink = obj.buttonLink
-    bottomMessage = obj.bottomMessage
-    closing = obj.closing
-    name = obj.name
-    address = obj.address
-    unsubscribeLink = obj.unsubscribeLink
-    buttonColor = obj.buttonColor
-    title = obj.title
+    buttonText = obj.buttonText
+    headerText = obj.headerText
+    paragraphText = obj.paragraphText
+    socialIcons = createSocialIcons()
+    addressSection = createAddressSection()
 
     htmlString = """
+
         <!doctype html>
-        <html>
+
+        <html lang="en">
 
         <head>
-        <meta name="viewport" content="width=device-width">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>{11}</title>
-        <style>
-
-            p {{
-                color: #222 !important;
+            <meta charset="utf-8">
+            <title>Podverse</title>
+            <style>
+            body {{
+                margin: 0;
+                padding: 0;
             }}
-
-            /* -------------------------------------
-                INLINED WITH htmlemail.io/inline
-            ------------------------------------- */
-            /* -------------------------------------
-                RESPONSIVE AND MOBILE FRIENDLY STYLES
-            ------------------------------------- */
-            @media only screen and (max-width: 620px) {{
-                table[class=body] h1 {{
-                    font-size: 28px !important;
-                    margin-bottom: 10px !important;
-                }}
-
-                table[class=body] p,
-                table[class=body] ul,
-                table[class=body] ol,
-                table[class=body] td,
-                table[class=body] span,
-                table[class=body] a {{
-                    font-size: 16px !important;
-                }}
-
-                table[class=body] .wrapper,
-                table[class=body] .article {{
-                    padding: 10px !important;
-                }}
-
-                table[class=body] .content {{
-                    padding: 0 !important;
-                }}
-
-                table[class=body] .container {{
-                    padding: 0 !important;
-                    width: 100% !important;
-                }}
-
-                table[class=body] .main {{
-                    border-left-width: 0 !important;
-                    border-radius: 0 !important;
-                    border-right-width: 0 !important;
-                }}
-
-                table[class=body] .btn table {{
-                    width: 100% !important;
-                }}
-
-                table[class=body] .btn a {{
-                    width: 100% !important;
-                }}
-
-                table[class=body] .img-responsive {{
-                    height: auto !important;
-                    max-width: 100% !important;
-                    width: auto !important;
-                }}
+            .container {{
+                background-color: #D8D8D8;
+                font-family: "Arial", sans-serif;
+                margin: 0;
+                padding: 0 0 32px 0;
             }}
-
-            /* -------------------------------------
-                PRESERVE THESE STYLES IN THE HEAD
-            ------------------------------------- */
-            @media all {{
-                .ExternalClass {{
-                    width: 100%;
-                }}
-
-                .ExternalClass,
-                .ExternalClass p,
-                .ExternalClass span,
-                .ExternalClass font,
-                .ExternalClass td,
-                .ExternalClass div {{
-                    line-height: 100%;
-                }}
-
-                .apple-link a {{
-                    color: inherit !important;
-                    font-family: inherit !important;
-                    font-size: inherit !important;
-                    font-weight: inherit !important;
-                    line-height: inherit !important;
-                    text-decoration: none !important;
-                }}
-
-                .btn-primary table td:hover {{
-                    background-color: #34495e !important;
-                }}
-
-                .btn-primary a:hover {{
-                    background-color: #34495e !important;
-                    border-color: #34495e !important;
-                }}
+            .nav {{
+                background-color: {1};
+                height: 58px;
+                text-align: center;
+                width: 100%;
             }}
-        </style>
+            .nav img {{
+                height: 38px;
+                margin-top: 10px
+            }}
+            .content {{
+                background-color: #FFF;
+                margin: 40px auto;
+                max-width: 380px;
+                padding: 40px 40px 48px 40px;
+            }}
+            .content h1 {{
+                color: {1};
+                font-size: 30px;
+                margin: 0 0 32px 0;
+                text-align: center;
+            }}
+            .content p {{
+                color: #000;
+                font-size: 14px;
+                margin: 0 0 32px 0;
+                text-align: center;
+            }}
+            .content .button {{
+                background-color: {1};
+                border-radius: 100px;
+                color: #FFF;
+                display: block;
+                font-size: 14px;
+                height: 40px;
+                line-height: 40px;
+                text-align: center;
+                text-decoration: none;
+                width: 100%;
+            }}
+            .content .closing {{
+                margin: 36px 0 0 0;
+                text-align: center;
+            }}
+            .footer .social-icons {{
+                margin: 36px 32px 28px 32px;
+                text-align: center;
+            }}
+            .footer .social-icon {{
+                display: inline-block;
+                height: 32px;
+                margin: 0 16px;
+                width: 32px;
+            }}
+            .footer .social-icon img {{
+                height: 32px;
+                width: 32px;
+            }}
+            .footer .address {{
+                color: #555;
+                font-size: 14px;
+                line-height: 20px;
+                margin: 0;
+                text-align: center;
+            }}
+            .footer .unsubscribe {{
+                color: #555;
+                display: block;
+                font-size: 12px;
+                margin: 32px 0 0 0;
+                text-align: center;
+                text-decoration: none;
+            }}
+            </style>
         </head>
 
-        <body class="" style="background-color: #f6f6f6; font-family: sans-serif; -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.4; margin: 0; padding: 0; -ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%;">
-        <table border="0" cellpadding="0" cellspacing="0" class="body" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background-color: #f6f6f6;">
-            <tr>
-            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
-            <td class="container" style="font-family: sans-serif; font-size: 14px; vertical-align: top; display: block; Margin: 0 auto; max-width: 580px; padding: 10px; width: 580px;">
-                <div class="content" style="box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;">
-
-                <!-- START CENTERED WHITE CONTAINER -->
-                <span class="preheader" style="color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;">{0}</span>
-                <table class="main" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;">
-
-                    <!-- START MAIN CONTENT AREA -->
-                    <tr>
-                    <td class="wrapper" style="font-family: sans-serif; font-size: 14px; vertical-align: top; box-sizing: border-box; padding: 20px;">
-                        <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-                        <tr>
-                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">
-                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">{1}</p>
-                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">{2}</p>
-                            <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; box-sizing: border-box;">
-                                <tbody>
-                                <tr>
-                                    <td align="left" style="font-family: sans-serif; font-size: 14px; vertical-align: top; padding-bottom: 15px;">
-                                    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: auto;">
-                                        <tbody>
-                                        <tr>
-                                            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top; background-color: {10}; border-radius: 5px; text-align: center;">
-                                            <a href="{4}" target="_blank" style="display: inline-block; color: #ffffff; background-color: {10}; border: solid 1px {10}; border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 14px; font-weight: bold; margin: 0; padding: 12px 25px; text-transform: capitalize; border-color: {10};">{3}</a> </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            <p style="display: none; font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">{5}</p>
-                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">{6}</p>
-                            <p style="font-family: sans-serif; font-size: 14px; font-weight: normal; margin: 0; Margin-bottom: 15px;">{7}</p>
-                            </td>
-                        </tr>
-                        </table>
-                    </td>
-                    </tr>
-
-                    <!-- END MAIN CONTENT AREA -->
-                </table>
-
-                <!-- START FOOTER -->
-                <div class="footer" style="clear: both; Margin-top: 10px; text-align: center; width: 100%;">
-                    <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;">
-                    <tr>
-                        <td class="content-block" style="font-family: sans-serif; vertical-align: top; padding-bottom: 10px; padding-top: 10px; font-size: 12px; color: #999999; text-align: center;">
-                        <span class="apple-link" style="color: #999999; font-size: 12px; text-align: center;">{8}</span>
-                        </td>
-                    </tr>
-                    </table>
-                </div>
-                <!-- END FOOTER -->
-
-                <!-- END CENTERED WHITE CONTAINER -->
-                </div>
-            </td>
-            <td style="font-family: sans-serif; font-size: 14px; vertical-align: top;">&nbsp;</td>
-            </tr>
-        </table>
+        <body>
+            <div class="container">
+            <div class="nav">
+                <img src="{2}" />
+            </div>
+            <div class="content">
+                <h1>{3}</h1>
+                <p>{4}</p>
+                <a class="button" href="{5}">{6}</a>
+            </div>
+            <div class="footer">
+                {7}
+                {8}
+            </div>
+            </div>
         </body>
 
         </html>
     """
 
-    htmlString = htmlString.format(preheader, greeting, topMessage, button, buttonLink, bottomMessage, closing, name, address, unsubscribeLink, buttonColor, title)
+    htmlString = htmlString.format(config.EMAIL_BRAND_COLOR, config.EMAIL_HEADER_IMAGE_URL, headerText, paragraphText, buttonLink, buttonText, socialIcons, addressSection)
 
     return htmlString
 
 class EmailTemplateObj:
-    def __init__(self, preheader, greeting, topMessage, button, buttonLink, bottomMessage, closing, name, address, unsubscribeLink, buttonColor, title):
-        self.preheader = preheader
-        self.greeting = greeting
-        self.topMessage = topMessage
-        self.button = button
+    def __init__(self, headerText, paragraphText, buttonLink, buttonText):
+        self.headerText = headerText
+        self.paragraphText = paragraphText
         self.buttonLink = buttonLink
-        self.bottomMessage = bottomMessage
-        self.closing = closing
-        self.name = name
-        self.address = address
-        self.unsubscribeLink = unsubscribeLink
-        self.buttonColor = buttonColor
-        self.title = title
+        self.buttonText = buttonText
+
+def createAddressSection():
+    htmlString = """
+        <div class="address">
+            {1}
+            <br />
+            {2}
+        </div>
+    """
+    htmlString = htmlString.format(config.LEGAL_NAME, config.LEGAL_ADDRESS)
+    return htmlString
+
+def createFacebookIcon():
+    htmlString = """
+        <a class="social-icon" href="{1}">
+            <img src="{2}" />
+        </a>
+    """
+    htmlString = htmlString.format(config.SOCIAL_FACEBOOK_PAGE_URL, config.SOCIAL_FACEBOOK_IMAGE_URL)
+    return htmlString
+
+def createGithubIcon():
+    htmlString = """
+        <a class="social-icon" href="{1}">
+            <img src="{2}" />
+        </a>
+    """
+    htmlString = htmlString.format(config.SOCIAL_GITHUB_PAGE_URL, config.SOCIAL_GITHUB_IMAGE_URL)
+    return htmlString
+
+def createRedditIcon():
+    htmlString = """
+        <a class="social-icon" href="{1}">
+            <img src="{2}" />
+        </a>
+    """
+    htmlString = htmlString.format(config.SOCIAL_REDDIT_PAGE_URL, config.SOCIAL_REDDIT_IMAGE_URL)
+    return htmlString
+
+def createTwitterIcon():
+    htmlString = """
+        <a class="social-icon" href="{1}">
+            <img src="{2}" />
+        </a>
+    """
+    htmlString = htmlString.format(config.SOCIAL_TWITTER_PAGE_URL, config.SOCIAL_TWITTER_IMAGE_URL)
+    return htmlString
+
+def createSocialIcons():
+    facebookIcon = createFacebookIcon()
+    githubIcon = createGithubIcon()
+    redditIcon = createRedditIcon()
+    twitterIcon = createTwitterIcon()
+
+    htmlString = """
+        <div class="social-icons">
+            {1}
+            {2}
+            {3}
+            {4}
+        </div>
+    """
+    htmlString = htmlString.format(facebookIcon, githubIcon, redditIcon, twitterIcon)
+    return htmlString
