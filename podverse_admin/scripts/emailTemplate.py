@@ -149,7 +149,7 @@ def createAddressSection():
 def createFacebookIcon():
     htmlString = """
         <a class="social-icon" href="{0}">
-            <img src="{0}" />
+            <img src="{1}" />
         </a>
     """
     htmlString = htmlString.format(config.SOCIAL_FACEBOOK_PAGE_URL, config.SOCIAL_FACEBOOK_IMAGE_URL)
