@@ -24,7 +24,7 @@ def emailTemplate(obj):
         </head>
 
         <body style="margin: 0; padding: 0;">
-            <div class="container" style="background-color: #D8D8D8; font-family: "Arial", sans-serif; margin: 0; padding: 0 0 32px 0;">
+            <div class="container" style="background-color: #D8D8D8; font-family: 'Arial', sans-serif; margin: 0; padding: 0 0 32px 0;">
             <div class="nav" style="background-color: {0}; height: 58px; text-align: center; width: 100%;">
                 <img src="{1}" style="height: 38px; margin-top: 10px" />
             </div>
