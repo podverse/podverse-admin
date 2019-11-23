@@ -5,7 +5,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 def sendNewUserEmail(receiver):
-    headerText = "How to access your Podverse Premium membership"
+    headerText = "Your Podverse Premium membership"
     paragraphText = "Click the button below to use the Reset Password form, then log into your new account."
     buttonLink = os.environ['NEW_USER_EMAIL_BUTTON_LINK']
     buttonText = "Reset Password"
