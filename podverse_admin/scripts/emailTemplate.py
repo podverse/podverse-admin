@@ -1,10 +1,10 @@
 import config
 
 def emailTemplate(obj):
-    buttonLink = obj.buttonLink
-    buttonText = obj.buttonText
     headerText = obj.headerText
     paragraphText = obj.paragraphText
+    buttonLink = obj.buttonLink
+    buttonText = obj.buttonText
     socialIcons = createSocialIcons()
     addressSection = createAddressSection()
 
@@ -29,7 +29,7 @@ def emailTemplate(obj):
                 padding: 0 0 32px 0;
             }}
             .nav {{
-                background-color: {1};
+                background-color: {0};
                 height: 58px;
                 text-align: center;
                 width: 100%;
@@ -45,7 +45,7 @@ def emailTemplate(obj):
                 padding: 40px 40px 48px 40px;
             }}
             .content h1 {{
-                color: {1};
+                color: {0};
                 font-size: 30px;
                 margin: 0 0 32px 0;
                 text-align: center;
@@ -57,7 +57,7 @@ def emailTemplate(obj):
                 text-align: center;
             }}
             .content .button {{
-                background-color: {1};
+                background-color: {0};
                 border-radius: 100px;
                 color: #FFF;
                 display: block;
@@ -107,16 +107,16 @@ def emailTemplate(obj):
         <body>
             <div class="container">
             <div class="nav">
-                <img src="{2}" />
+                <img src="{1}" />
             </div>
             <div class="content">
-                <h1>{3}</h1>
-                <p>{4}</p>
-                <a class="button" href="{5}">{6}</a>
+                <h1>{2}</h1>
+                <p>{3}</p>
+                <a class="button" href="{4}">{5}</a>
             </div>
             <div class="footer">
+                {6}
                 {7}
-                {8}
             </div>
             </div>
         </body>
@@ -138,9 +138,9 @@ class EmailTemplateObj:
 def createAddressSection():
     htmlString = """
         <div class="address">
-            {1}
+            {0}
             <br />
-            {2}
+            {1}
         </div>
     """
     htmlString = htmlString.format(config.LEGAL_NAME, config.LEGAL_ADDRESS)
@@ -148,8 +148,8 @@ def createAddressSection():
 
 def createFacebookIcon():
     htmlString = """
-        <a class="social-icon" href="{1}">
-            <img src="{2}" />
+        <a class="social-icon" href="{0}">
+            <img src="{0}" />
         </a>
     """
     htmlString = htmlString.format(config.SOCIAL_FACEBOOK_PAGE_URL, config.SOCIAL_FACEBOOK_IMAGE_URL)
@@ -157,8 +157,8 @@ def createFacebookIcon():
 
 def createGithubIcon():
     htmlString = """
-        <a class="social-icon" href="{1}">
-            <img src="{2}" />
+        <a class="social-icon" href="{0}">
+            <img src="{1}" />
         </a>
     """
     htmlString = htmlString.format(config.SOCIAL_GITHUB_PAGE_URL, config.SOCIAL_GITHUB_IMAGE_URL)
@@ -166,8 +166,8 @@ def createGithubIcon():
 
 def createRedditIcon():
     htmlString = """
-        <a class="social-icon" href="{1}">
-            <img src="{2}" />
+        <a class="social-icon" href="{0}">
+            <img src="{1}" />
         </a>
     """
     htmlString = htmlString.format(config.SOCIAL_REDDIT_PAGE_URL, config.SOCIAL_REDDIT_IMAGE_URL)
@@ -175,8 +175,8 @@ def createRedditIcon():
 
 def createTwitterIcon():
     htmlString = """
-        <a class="social-icon" href="{1}">
-            <img src="{2}" />
+        <a class="social-icon" href="{0}">
+            <img src="{1}" />
         </a>
     """
     htmlString = htmlString.format(config.SOCIAL_TWITTER_PAGE_URL, config.SOCIAL_TWITTER_IMAGE_URL)
@@ -190,10 +190,10 @@ def createSocialIcons():
 
     htmlString = """
         <div class="social-icons">
+            {0}
             {1}
             {2}
             {3}
-            {4}
         </div>
     """
     htmlString = htmlString.format(facebookIcon, githubIcon, redditIcon, twitterIcon)

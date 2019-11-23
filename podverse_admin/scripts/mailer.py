@@ -17,9 +17,9 @@ def sendNewUserEmail(receiver):
         buttonText
     ))
     
-    sendEmail(htmlString, receiver)
+    sendEmail(htmlString, receiver, headerText)
 
-def sendEmail(htmlString, receiver):
+def sendEmail(htmlString, receiver, headerText):
     sender = os.environ['NEW_USER_EMAIL_FROM']
 
     msg = MIMEMultipart('alternative')
@@ -42,4 +42,5 @@ def sendEmail(htmlString, receiver):
         receiver,
         msg.as_string()
     )
+
     server.quit()
