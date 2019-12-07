@@ -16,6 +16,12 @@ class Command(BaseCommand):
     admin, adminCreated = Group.objects.get_or_create(name='Admin')
     curator, curatorCreated = Group.objects.get_or_create(name='Curator')
 
+    # APPSTOREPURCHASE
+    appStorePurchaseCT = ContentType.objects.get(app_label='podverse_db', model='appstorepurchase')
+    appStorePurchasePerms = Permission.objects.filter(content_type=appStorePurchaseCT)
+    appStorePurchasePermView = appStorePurchasePerms[3]
+    admin.permissions.add(appStorePurchasePermView)
+
     # AUTHOR
     authorCT = ContentType.objects.get(model='author')
     authorPerms = Permission.objects.filter(content_type=authorCT)
@@ -62,6 +68,12 @@ class Command(BaseCommand):
     curator.permissions.add(feedUrlPermChange)
     curator.permissions.add(feedUrlPermDelete)
     curator.permissions.add(feedUrlPermView)
+
+    # GOOGLEPLAYPURCHASE
+    googlePlayPurchaseCT = ContentType.objects.get(app_label='podverse_db', model='googleplaypurchase')
+    googlePlayPurchasePerms = Permission.objects.filter(content_type=googlePlayPurchaseCT)
+    googlePlayPurchasePermView = googlePlayPurchasePerms[3]
+    admin.permissions.add(googlePlayPurchasePermView)
 
     # MEDIAREF
     mediaRefCT = ContentType.objects.get(model='mediaref')
