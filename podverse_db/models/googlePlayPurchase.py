@@ -21,7 +21,7 @@ class GooglePlayPurchase(models.Model):
 
     class Meta:
         managed: False
-        db_table = 'googlePlayPurchases'
+        db_table = 'googlePlayPurchase'
         verbose_name = 'GooglePlayPurchase'
         verbose_name_plural = 'GooglePlayPurchases'
 

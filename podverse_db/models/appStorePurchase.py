@@ -33,7 +33,7 @@ class AppStorePurchase(models.Model):
 
     class Meta:
         managed: False
-        db_table = 'appStorePurchases'
+        db_table = 'appStorePurchase'
         verbose_name = 'AppStorePurchase'
         verbose_name_plural = 'AppStorePurchases'
 
