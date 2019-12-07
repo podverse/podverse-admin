@@ -4,41 +4,22 @@ from podverse_admin.scripts.emailTemplate import emailTemplate, EmailTemplateObj
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-headerText = "How to access your Podverse Premium membership"
-
 def sendNewUserEmail(receiver):
-    #    preheader displays as preview text in some email clients
-    preheader = headerText
-    greeting = "Hello!"
-    topMessage = "Click the button below to use the Reset Password form, then log into your new account."
-    button = "Reset Password"
+    headerText = "Your Podverse Premium membership"
+    paragraphText = "Click the button below to use the Reset Password form, then log into your new account."
     buttonLink = os.environ['NEW_USER_EMAIL_BUTTON_LINK']
-    bottomMessage = ""
-    closing = "Have a nice day :)"
-    name = "Podverse"
-    address = "Chicago, IL, USA"
-    unsubscribeLink = ""
-    buttonColor = "#2968B1"
-    title = headerText
+    buttonText = "Reset Password"
 
     htmlString = emailTemplate(EmailTemplateObj(
-        preheader,
-        greeting,
-        topMessage,
-        button,
+        headerText,
+        paragraphText,
         buttonLink,
-        bottomMessage,
-        closing,
-        name,
-        address,
-        unsubscribeLink,
-        buttonColor,
-        title
+        buttonText
     ))
     
-    sendEmail(htmlString, receiver)
+    sendEmail(htmlString, receiver, headerText)
 
-def sendEmail(htmlString, receiver):
+def sendEmail(htmlString, receiver, headerText):
     sender = os.environ['NEW_USER_EMAIL_FROM']
 
     msg = MIMEMultipart('alternative')
@@ -61,4 +42,5 @@ def sendEmail(htmlString, receiver):
         receiver,
         msg.as_string()
     )
+
     server.quit()
