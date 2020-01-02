@@ -17,7 +17,7 @@ class PodcastAdmin(admin.ModelAdmin):
     fields = ('id', 'title', 'isPublic', 'description', 'feedLastUpdated', 'guid', 'imageUrl',
         'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl', 'pastHourTotalUniquePageviews',
         'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews', 'pastMonthTotalUniquePageviews',
-        'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'sortableTitle',
+        'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'shrunkImageUrl', 'sortableTitle',
         'type', 'createdAt', 'updatedAt',)
     list_display = ('title', 'id', 'isPublic',)
     list_editable = ('isPublic',)

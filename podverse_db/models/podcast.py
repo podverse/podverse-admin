@@ -20,6 +20,7 @@ class Podcast(models.Model):
     pastMonthTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Month')
     pastYearTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Year')
     pastAllTimeTotalUniquePageviews = models.PositiveIntegerField(default=0, verbose_name='Pageviews - All Time')
+    shrunkImageUrl = models.URLField(max_length=2084, blank=True)
     sortableTitle = models.CharField(max_length=2084, blank=True)
     title = models.CharField(max_length=2084, blank=True)
     type = models.CharField(max_length=2084, blank=True)
