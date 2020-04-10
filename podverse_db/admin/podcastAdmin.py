@@ -13,13 +13,13 @@ class FeedUrlInline(admin.TabularInline):
         return False
 
 class PodcastAdmin(admin.ModelAdmin):
-    fields = ('id', 'title', 'isPublic', 'description', 'feedLastUpdated', 'guid', 'hideDynamicAdsWarning', 'imageUrl',
+    fields = ('id', 'title', 'isPublic', 'hideDynamicAdsWarning', 'description', 'feedLastUpdated', 'guid', 'imageUrl',
         'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl', 'pastHourTotalUniquePageviews',
         'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews', 'pastMonthTotalUniquePageviews',
         'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'shrunkImageUrl', 'sortableTitle',
         'type', 'createdAt', 'updatedAt',)
-    list_display = ('title', 'id', 'isPublic',)
-    list_editable = ('isPublic',)
+    list_display = ('title', 'id', 'isPublic', 'hideDynamicAdsWarning')
+    list_editable = ('isPublic', 'hideDynamicAdsWarning')
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
     inlines = [ FeedUrlInline ]
