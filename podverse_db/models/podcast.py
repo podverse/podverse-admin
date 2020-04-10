@@ -7,6 +7,7 @@ class Podcast(models.Model):
     description = models.TextField(blank=True)
     feedLastUpdated = models.DateTimeField(blank=True)
     guid = models.CharField(max_length=2084, blank=True)
+    hideDynamicAdsWarning = models.BooleanField(default=False)
     imageUrl = models.URLField(max_length=2084, blank=True)
     isExplicit = models.BooleanField(default=False)
     isPublic = models.BooleanField(default=False)

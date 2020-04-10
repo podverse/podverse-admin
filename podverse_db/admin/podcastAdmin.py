@@ -14,7 +14,7 @@ class FeedUrlInline(admin.TabularInline):
 
 
 class PodcastAdmin(admin.ModelAdmin):
-    fields = ('id', 'title', 'isPublic', 'description', 'feedLastUpdated', 'guid', 'imageUrl',
+    fields = ('id', 'title', 'isPublic', 'description', 'feedLastUpdated', 'guid', 'hideDynamicAdsWarning', 'imageUrl',
         'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl', 'pastHourTotalUniquePageviews',
         'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews', 'pastMonthTotalUniquePageviews',
         'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'shrunkImageUrl', 'sortableTitle',
