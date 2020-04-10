@@ -20,7 +20,7 @@ class PodcastAdmin(admin.ModelAdmin):
         'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'shrunkImageUrl', 'sortableTitle',
         'type', 'createdAt', 'updatedAt',)
     list_display = ('title', 'id', 'isPublic',)
-    list_editable = ('isPublic',)
+    list_editable = ('hideDynamicAdsWarning', 'isPublic',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
     inlines = [ FeedUrlInline ]
@@ -30,9 +30,11 @@ class PodcastAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return ['createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Admin').exists():
+            fields.remove('hideDynamicAdsWarning')
             fields.remove('isPublic')
             return fields
         elif request.user.groups.filter(name='Curator').exists():
+            fields.remove('hideDynamicAdsWarning')
             fields.remove('isPublic')
             return fields
         else:
