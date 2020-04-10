@@ -18,8 +18,8 @@ class PodcastAdmin(admin.ModelAdmin):
         'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews', 'pastMonthTotalUniquePageviews',
         'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'shrunkImageUrl', 'sortableTitle',
         'type', 'createdAt', 'updatedAt',)
-    list_display = ('title', 'id', 'isPublic', 'hideDynamicAdsWarning')
-    list_editable = ('isPublic', 'hideDynamicAdsWarning')
+    list_display = ('title', 'id', 'isPublic', 'hideDynamicAdsWarning',)
+    list_editable = ('isPublic', 'hideDynamicAdsWarning',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
     inlines = [ FeedUrlInline ]
