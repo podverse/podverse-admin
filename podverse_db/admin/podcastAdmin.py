@@ -20,7 +20,7 @@ class PodcastAdmin(admin.ModelAdmin):
         'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'shrunkImageUrl', 'sortableTitle',
         'type', 'createdAt', 'updatedAt',)
     list_display = ('title', 'id', 'isPublic',)
-    list_editable = ('hideDynamicAdsWarning', 'isPublic',)
+    list_editable = ('isPublic',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
     inlines = [ FeedUrlInline ]
