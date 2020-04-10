@@ -12,7 +12,6 @@ class FeedUrlInline(admin.TabularInline):
     def has_add_permission(self, request, obj=None):
         return False
 
-
 class PodcastAdmin(admin.ModelAdmin):
     fields = ('id', 'title', 'isPublic', 'description', 'feedLastUpdated', 'guid', 'hideDynamicAdsWarning', 'imageUrl',
         'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl', 'pastHourTotalUniquePageviews',
