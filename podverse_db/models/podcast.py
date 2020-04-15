@@ -4,6 +4,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 class Podcast(models.Model):
     id = models.CharField(max_length=14, primary_key=True)
 
+    alwaysFullyParse = models.BooleanField(default=False)
     description = models.TextField(blank=True)
     feedLastUpdated = models.DateTimeField(blank=True)
     guid = models.CharField(max_length=2084, blank=True)

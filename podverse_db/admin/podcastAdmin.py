@@ -13,13 +13,13 @@ class FeedUrlInline(admin.TabularInline):
         return False
 
 class PodcastAdmin(admin.ModelAdmin):
-    fields = ('id', 'title', 'isPublic', 'hideDynamicAdsWarning', 'description', 'feedLastUpdated', 'guid', 'imageUrl',
-        'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl', 'pastHourTotalUniquePageviews',
-        'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews', 'pastMonthTotalUniquePageviews',
-        'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'shrunkImageUrl', 'sortableTitle',
-        'type', 'createdAt', 'updatedAt',)
-    list_display = ('title', 'id', 'isPublic', 'hideDynamicAdsWarning',)
-    list_editable = ('isPublic', 'hideDynamicAdsWarning',)
+    fields = ('id', 'title', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'description', 'feedLastUpdated',
+        'guid', 'imageUrl', 'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl',
+        'pastHourTotalUniquePageviews', 'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews',
+        'pastMonthTotalUniquePageviews', 'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews',
+        'shrunkImageUrl', 'sortableTitle', 'type', 'createdAt', 'updatedAt',)
+    list_display = ('title', 'id', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse',)
+    list_editable = ('isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
     inlines = [ FeedUrlInline ]
@@ -29,12 +29,14 @@ class PodcastAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return ['createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Admin').exists():
-            fields.remove('hideDynamicAdsWarning')
             fields.remove('isPublic')
+            fields.remove('hideDynamicAdsWarning')
+            fields.remove('alwaysFullyParse')
             return fields
         elif request.user.groups.filter(name='Curator').exists():
-            fields.remove('hideDynamicAdsWarning')
             fields.remove('isPublic')
+            fields.remove('hideDynamicAdsWarning')
+            fields.remove('alwaysFullyParse')
             return fields
         else:
             return fields
