@@ -1,3 +1,4 @@
+from podverse_db.admin.accountClaimToken import AccountClaimTokenAdmin
 from podverse_db.admin.appStorePurchaseAdmin import AppStorePurchaseAdmin
 from podverse_db.admin.authorAdmin import AuthorAdmin
 from podverse_db.admin.bitpayInvoiceAdmin import BitPayInvoiceAdmin

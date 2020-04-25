@@ -1,3 +1,4 @@
+from podverse_db.models.accountClaimToken import AccountClaimToken
 from podverse_db.models.appStorePurchase import AppStorePurchase
 from podverse_db.models.author import Author
 from podverse_db.models.bitpayInvoice import BitPayInvoice

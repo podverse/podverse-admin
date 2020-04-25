@@ -16,6 +16,12 @@ class Command(BaseCommand):
     admin, adminCreated = Group.objects.get_or_create(name='Admin')
     curator, curatorCreated = Group.objects.get_or_create(name='Curator')
 
+    # ACCOUNTCLAIMTOKEN
+    accountClaimTokenCT = ContentType.objects.get(app_label='podverse_db', model='accountclaimtoken')
+    accountClaimTokenPerms = Permission.objects.filter(content_type=accountClaimTokenCT)
+    accountClaimTokenPermView = accountClaimTokenPerms[3]
+    admin.permissions.add(accountClaimTokenPermView)
+
     # APPSTOREPURCHASE
     appStorePurchaseCT = ContentType.objects.get(app_label='podverse_db', model='appstorepurchase')
     appStorePurchasePerms = Permission.objects.filter(content_type=appStorePurchaseCT)
