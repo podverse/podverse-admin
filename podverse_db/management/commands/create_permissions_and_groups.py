@@ -20,6 +20,13 @@ class Command(BaseCommand):
     accountClaimTokenCT = ContentType.objects.get(app_label='podverse_db', model='accountclaimtoken')
     accountClaimTokenPerms = Permission.objects.filter(content_type=accountClaimTokenCT)
     accountClaimTokenPermView = accountClaimTokenPerms[3]
+    accountClaimTokenPermAdd = accountClaimTokenPerms[0]
+    accountClaimTokenPermChange = accountClaimTokenPerms[1]
+    accountClaimTokenPermDelete = accountClaimTokenPerms[2]
+    accountClaimTokenPermView = accountClaimTokenPerms[3]
+    admin.permissions.add(accountClaimTokenPermAdd)
+    admin.permissions.add(accountClaimTokenPermChange)
+    admin.permissions.add(accountClaimTokenPermDelete)
     admin.permissions.add(accountClaimTokenPermView)
 
     # APPSTOREPURCHASE
