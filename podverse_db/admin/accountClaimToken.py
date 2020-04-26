@@ -3,10 +3,10 @@ from django.contrib import admin
 from podverse_db.models import AccountClaimToken
 
 class AccountClaimTokenAdmin(admin.ModelAdmin):
-    fields = ('id', 'claimed', 'email', 'yearsToAdd', 'createdAt', 'updatedAt',)
-    list_display = ('id', 'claimed', 'email', 'yearsToAdd',)
+    fields = ('id', 'claimed', 'yearsToAdd', 'createdAt', 'updatedAt',)
+    list_display = ('id', 'claimed', 'yearsToAdd',)
     ordering = ('-updatedAt',)
-    search_fields = ('id', 'email',)
+    search_fields = ('id',)
 
     def get_readonly_fields(self, request, obj=None):
         fields = [f.name for f in self.model._meta.fields]
@@ -14,7 +14,6 @@ class AccountClaimTokenAdmin(admin.ModelAdmin):
             return ['id', 'createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Admin').exists():
             fields.remove('claimed')
-            fields.remove('email')
             fields.remove('yearsToAdd')
             return fields
         else:
