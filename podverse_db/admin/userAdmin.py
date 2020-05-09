@@ -11,9 +11,17 @@ class UserAdmin(admin.ModelAdmin):
         'name', 'roles', 'createdAt', 'updatedAt',]
 
     fields = user_fields
-    list_display = ('id', 'email', 'name',)
+    list_display = ('id', 'obscured_email', 'obscured_name',)
     ordering = ('-updatedAt',)
-    search_fields = ('id', 'email', 'name')
+    search_fields = ('id', 'obscured_email', 'obscured_name')
+
+    def obscured_email(self, obj):
+        return obj.email[0:3] + '***************'
+    obscured_email.short_description = 'Email'
+
+    def obscured_name(self, obj):
+        return obj.name[0:3] + '***************'
+    obscured_name.short_description = 'Name'
 
     def get_readonly_fields(self, request, obj=None):
         fields = [f.name for f in self.model._meta.fields]
