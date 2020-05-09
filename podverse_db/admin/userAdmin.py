@@ -20,7 +20,7 @@ class UserAdmin(admin.ModelAdmin):
     obscured_email.short_description = 'Email'
 
     def obscured_name(self, obj):
-        return obj.name[0:3] + '***************'
+        return obj.name[0:3] + '***************' if len(obj.name) > 3 else '******************'
     obscured_name.short_description = 'Name'
 
     def get_readonly_fields(self, request, obj=None):
