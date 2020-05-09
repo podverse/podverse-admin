@@ -20,6 +20,5 @@ from django.conf.urls import url
 admin.autodiscover()
 
 urlpatterns = [
-    path('', admin.site.urls),
-    url(r'^settings/', include('django_mfa.urls'))
+    path('', admin.site.urls)
 ]

@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'podverse_db.apps.PodverseDbConfig',
-    'django_mfa'
+    'podverse_db.apps.PodverseDbConfig'
 ]
 
 MIDDLEWARE = [
@@ -48,8 +47,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_mfa.middleware.MfaMiddleware'
+    'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
 ROOT_URLCONF = 'podverse_admin.urls'
@@ -128,5 +126,3 @@ USE_TZ = True
 
 STATIC_ROOT = 'static-admin'
 STATIC_URL = '/static-admin/'
-
-MFA_ISSUER_NAME = "Podverse - Admin Portal"
