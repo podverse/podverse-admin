@@ -1,0 +1,40 @@
+name: master-branch
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: pCYSl5EDgo/cat@master
+      id: version
+      with:
+        path: version.txt
+    
+    - name: build and push docker image
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        repository: podverse/podverse_admin
+        tags: latest,${{ steps.version.outputs.text }}
+
+    - name: log into prod, then deploy latest prod image
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: |
+          docker stop podverse_admin_prod
+          docker rm podverse_admin_prod
+          docker image rm podverse/podverse_admin:latest
+          docker-compose -f /home/mitch/podverse-ops/docker-compose.prod.yml up -d podverse_admin
+        host: ${{ secrets.PROD_SSH_HOST }}
+        username: ${{ secrets.PROD_SSH_USERNAME }}
+        passphrase: ${{ secrets.PROD_SSH_PASSPHRASE }}
+        privateKey: ${{ secrets.PROD_SSH_PRIVATE_KEY }}
