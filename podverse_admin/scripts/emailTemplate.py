@@ -83,6 +83,16 @@ def createGithubIcon():
     htmlString = htmlString.format(config.SOCIAL_GITHUB_PAGE_URL, config.SOCIAL_GITHUB_IMAGE_URL)
     return htmlString
 
+def createLinkedInIcon():
+    htmlString = """
+        <a class="social-icon" href="{0}" style="display: inline-block; height: 32px; margin: 0 16px; width: 32px;">
+            <img src="{1}" style="height: 32px; width: 32px;" />
+        </a>
+    """
+    htmlString = htmlString.format(
+        config.SOCIAL_LINKEDIN_PAGE_URL, config.SOCIAL_LINKEDIN_IMAGE_URL)
+    return htmlString
+
 def createRedditIcon():
     htmlString = """
         <a class="social-icon" href="{0}" style="display: inline-block; height: 32px; margin: 0 16px; width: 32px;">
@@ -104,6 +114,7 @@ def createTwitterIcon():
 def createSocialIcons():
     facebookIcon = createFacebookIcon()
     githubIcon = createGithubIcon()
+    linkedinIcon = createLinkedInIcon()
     redditIcon = createRedditIcon()
     twitterIcon = createTwitterIcon()
 
@@ -113,7 +124,8 @@ def createSocialIcons():
             {1}
             {2}
             {3}
+            {4}
         </div>
     """
-    htmlString = htmlString.format(facebookIcon, githubIcon, redditIcon, twitterIcon)
+    htmlString = htmlString.format(facebookIcon, githubIcon, linkedinIcon, redditIcon, twitterIcon)
     return htmlString
