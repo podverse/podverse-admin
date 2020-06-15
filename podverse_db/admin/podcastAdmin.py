@@ -29,6 +29,11 @@ class PodcastAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return ['createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Admin').exists():
+            fields.remove('isPublic')
+            fields.remove('authorityId')
+            fields.remove('hideDynamicAdsWarning')
+            fields.remove('alwaysFullyParse')
+            return fields
             return ['createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Curator').exists():
             fields.remove('isPublic')
