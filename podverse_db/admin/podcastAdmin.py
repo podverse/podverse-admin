@@ -30,6 +30,7 @@ class PodcastAdmin(admin.ModelAdmin):
             return ['createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Admin').exists():
             fields.remove('isPublic')
+            fields.remove('title')
             fields.remove('authorityId')
             fields.remove('hideDynamicAdsWarning')
             fields.remove('alwaysFullyParse')
@@ -37,6 +38,8 @@ class PodcastAdmin(admin.ModelAdmin):
             return ['createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Curator').exists():
             fields.remove('isPublic')
+            fields.remove('title')
+            fields.remove('authorityId')
             fields.remove('hideDynamicAdsWarning')
             fields.remove('alwaysFullyParse')
             return fields
