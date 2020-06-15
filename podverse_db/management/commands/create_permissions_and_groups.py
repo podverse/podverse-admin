@@ -117,12 +117,15 @@ class Command(BaseCommand):
     # PODCAST
     podcastCT = ContentType.objects.get(model='podcast')
     podcastPerms = Permission.objects.filter(content_type=podcastCT)
+    podcastPermAdd = podcastPerms[0]
     podcastPermChange = podcastPerms[1]
     podcastPermDelete = podcastPerms[2]
     podcastPermView = podcastPerms[3]
+    admin.permissions.add(podcastPermAdd)
     admin.permissions.add(podcastPermChange)
     admin.permissions.add(podcastPermDelete)
     admin.permissions.add(podcastPermView)
+    curator.permissions.add(podcastPermAdd)
     curator.permissions.add(podcastPermChange)
     curator.permissions.add(podcastPermDelete)
     curator.permissions.add(podcastPermView)
