@@ -5,7 +5,6 @@ import django.contrib.postgres.fields.jsonb
 from django.db import migrations, models
 import django.db.models.deletion
 import podverse_db.models.feedUrl
-import podverse_db.models.podcast
 import podverse_db.models.user
 import uuid
 
@@ -240,7 +239,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Podcast',
             fields=[
-                ('id', models.CharField(default=podverse_db.models.podcast.Podcast.shortid, max_length=14, primary_key=True, serialize=False)),
+                ('id', models.CharField(max_length=14, primary_key=True, serialize=False)),
                 ('alwaysFullyParse', models.BooleanField(default=False)),
                 ('authorityId', models.CharField(blank=True, max_length=2084)),
                 ('description', models.TextField(blank=True)),
