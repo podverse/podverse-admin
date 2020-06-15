@@ -5,6 +5,7 @@ class Podcast(models.Model):
     id = models.CharField(max_length=14, primary_key=True)
 
     alwaysFullyParse = models.BooleanField(default=False)
+    authorityId = models.CharField(max_length=2084, blank=True)
     description = models.TextField(blank=True)
     feedLastUpdated = models.DateTimeField(blank=True)
     guid = models.CharField(max_length=2084, blank=True)

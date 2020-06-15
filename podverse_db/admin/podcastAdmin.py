@@ -13,12 +13,12 @@ class FeedUrlInline(admin.TabularInline):
         return False
 
 class PodcastAdmin(admin.ModelAdmin):
-    fields = ('id', 'title', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'description', 'feedLastUpdated',
+    fields = ('id', 'title', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'authorityId', 'description', 'feedLastUpdated',
         'guid', 'imageUrl', 'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl',
         'pastHourTotalUniquePageviews', 'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews',
         'pastMonthTotalUniquePageviews', 'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews',
         'shrunkImageUrl', 'sortableTitle', 'type', 'createdAt', 'updatedAt',)
-    list_display = ('title', 'id', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse',)
+    list_display = ('title', 'id', 'authorityId', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse',)
     list_editable = ('isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
@@ -29,10 +29,7 @@ class PodcastAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return ['createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Admin').exists():
-            fields.remove('isPublic')
-            fields.remove('hideDynamicAdsWarning')
-            fields.remove('alwaysFullyParse')
-            return fields
+            return ['createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Curator').exists():
             fields.remove('isPublic')
             fields.remove('hideDynamicAdsWarning')
