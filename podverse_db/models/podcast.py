@@ -1,8 +1,12 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
+import shortuuid
 
 class Podcast(models.Model):
-    id = models.CharField(max_length=14, primary_key=True)
+    def shortid():
+        return shortuuid.ShortUUID().random(length=8)
+
+    id = models.CharField(max_length=14, primary_key=True, default=shortid)
 
     alwaysFullyParse = models.BooleanField(default=False)
     authorityId = models.CharField(max_length=2084, blank=True)
