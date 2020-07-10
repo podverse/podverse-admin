@@ -8,6 +8,7 @@ class FeedUrlAdmin(admin.ModelAdmin):
     ordering = ('-updatedAt',)
     search_fields = ('id', 'url',)
     autocomplete_fields = ('podcast',)
+    raw_id_fields = ('podcast',)
 
     def get_podcast_title(self, obj):
         return obj.podcast.title
