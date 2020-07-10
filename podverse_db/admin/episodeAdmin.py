@@ -10,7 +10,7 @@ class EpisodeAdmin(admin.ModelAdmin):
     list_editable = ('isPublic',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
-    raw_id_fields = ('podcast',)
+    autocomplete_fields = ('podcast',)
 
     def get_podcast_title(self, obj):
         return obj.podcast.title
