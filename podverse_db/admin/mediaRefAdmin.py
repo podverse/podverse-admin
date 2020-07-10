@@ -10,7 +10,7 @@ class MediaRefAdmin(admin.ModelAdmin):
     list_editable = ('isPublic',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
-    autocomplete_fields = ('episode', 'owner',)
+    raw_id_fields = ('episode', 'owner',)
 
     def get_podcast_title(self, obj):
         return obj.episode.podcast.title

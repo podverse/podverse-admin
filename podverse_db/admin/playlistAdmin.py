@@ -6,7 +6,7 @@ class PlaylistAdmin(admin.ModelAdmin):
     list_display = ('id', 'get_owner_email', 'title',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
-    autocomplete_fields = ('owner',)
+    raw_id_fields = ('owner',)
 
     def get_owner_email(self, obj):
         return obj.owner.email

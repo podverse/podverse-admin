@@ -6,7 +6,7 @@ class PayPalOrderAdmin(admin.ModelAdmin):
     list_display = ('paymentID', 'state', 'get_owner_email')
     ordering = ('-updatedAt',)
     search_fields = ('paymentID',)
-    autocomplete_fields = ('owner',)
+    raw_id_fields = ('owner',)
 
     def get_owner_email(self, obj):
         return obj.owner.email

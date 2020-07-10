@@ -6,15 +6,11 @@ class EpisodeAdmin(admin.ModelAdmin):
         'isExplicit', 'linkUrl', 'mediaFilesize', 'mediaType', 'mediaUrl', 'pastHourTotalUniquePageviews',
         'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews', 'pastMonthTotalUniquePageviews',
         'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'pubDate', 'createdAt', 'updatedAt',)
-    list_display = ('title', 'id', 'get_podcast_title', 'isPublic',)
+    list_display = ('title', 'id', 'isPublic',)
     list_editable = ('isPublic',)
     ordering = ('-updatedAt',)
-    search_fields = ('id', 'title',)
-    autocomplete_fields = ('podcast',)
-
-    def get_podcast_title(self, obj):
-        return obj.podcast.title
-    get_podcast_title.short_description = 'Podcast Title'
+    search_fields = ('id', 'title')
+    raw_id_fields = ('podcast',)
 
     def get_readonly_fields(self, request, obj=None):
         fields = [f.name for f in self.model._meta.fields]

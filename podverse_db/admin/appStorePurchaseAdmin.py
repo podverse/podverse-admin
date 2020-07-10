@@ -12,7 +12,7 @@ class AppStorePurchaseAdmin(admin.ModelAdmin):
     list_display = ('transactionId', 'owner',)
     ordering = ('-updatedAt',)
     search_fields = ('transactionId',)
-    autocomplete_fields = ('owner',)
+    raw_id_fields = ('owner',)
 
     def get_readonly_fields(self, request, obj=None):
         fields = [f.name for f in self.model._meta.fields]

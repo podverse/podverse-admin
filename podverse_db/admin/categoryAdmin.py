@@ -6,7 +6,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'fullPath', 'slug')
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
-    autocomplete_fields = ('category',)
+    raw_id_fields = ('category',)
 
     def get_readonly_fields(self, request, obj=None):
         fields = [f.name for f in self.model._meta.fields]
