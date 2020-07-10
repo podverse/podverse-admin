@@ -8,7 +8,7 @@ class BitPayInvoiceAdmin(admin.ModelAdmin):
     list_display = ('id', 'orderId', 'owner')
     ordering = ('-updatedAt',)
     search_fields = ('id', 'orderId')
-    raw_id_fields = ('owner',)
+    autocomplete_fields = ('owner',)
 
     def get_readonly_fields(self, request, obj=None):
         fields = [f.name for f in self.model._meta.fields]
