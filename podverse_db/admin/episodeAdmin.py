@@ -6,7 +6,7 @@ class EpisodeAdmin(admin.ModelAdmin):
         'isExplicit', 'linkUrl', 'mediaFilesize', 'mediaType', 'mediaUrl', 'pastHourTotalUniquePageviews',
         'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews', 'pastMonthTotalUniquePageviews',
         'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'pubDate', 'createdAt', 'updatedAt',)
-    list_display = ('title', 'id', 'get_podcast_title', 'isPublic',)
+    list_display = ('title', 'id', 'get_podcast_title', 'pubDate', 'isPublic',)
     list_editable = ('isPublic',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
@@ -22,14 +22,5 @@ class EpisodeAdmin(admin.ModelAdmin):
             return ['createdAt', 'updatedAt']
         else:
             return fields
-
-    def get_queryset(self, request):
-        qs = super(EpisodeAdmin, self).get_queryset(request)
-        query_param = request.GET.get('q', '')
-
-        if query_param:
-            return qs
-        else:
-            return qs.none()
 
 admin.site.register(Episode, EpisodeAdmin)
