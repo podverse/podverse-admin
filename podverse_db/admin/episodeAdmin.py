@@ -25,7 +25,7 @@ class EpisodeAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         qs = super(EpisodeAdmin, self).get_queryset(request)
-        query_param = request.GET['q']
+        query_param = request.GET.get('q', '')
 
         if query_param:
             return qs
