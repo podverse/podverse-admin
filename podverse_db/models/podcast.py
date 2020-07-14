@@ -11,6 +11,7 @@ class Podcast(models.Model):
     alwaysFullyParse = models.BooleanField(default=False)
     authorityId = models.CharField(max_length=2084, blank=True)
     description = models.TextField(blank=True)
+    feedLastParseFailed = models.BooleanField(default=False)
     feedLastUpdated = models.DateTimeField(blank=True)
     guid = models.CharField(max_length=2084, blank=True)
     hideDynamicAdsWarning = models.BooleanField(default=False)

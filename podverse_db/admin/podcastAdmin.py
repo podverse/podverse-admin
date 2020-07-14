@@ -14,12 +14,12 @@ class FeedUrlInline(admin.TabularInline):
 
 class PodcastAdmin(admin.ModelAdmin):
     fields = ('id', 'title', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'authorityId', 'description', 'feedLastUpdated',
-        'guid', 'imageUrl', 'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl',
+        'feedLastParseFailed', 'guid', 'imageUrl', 'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl',
         'pastHourTotalUniquePageviews', 'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews',
         'pastMonthTotalUniquePageviews', 'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews',
         'shrunkImageUrl', 'sortableTitle', 'type', 'createdAt', 'updatedAt',)
-    list_display = ('title', 'id', 'authorityId', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse',)
-    list_editable = ('isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse',)
+    list_display = ('title', 'id', 'authorityId', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'feedLastParseFailed',)
+    list_editable = ('isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'feedLastParseFailed',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
     inlines = [ FeedUrlInline ]
