@@ -36,6 +36,11 @@ def sendEmail(htmlString, receiver, headerText):
     password = os.environ['MAILER_PASSWORD']
 
     server = smtplib.SMTP(mailer_host, mailer_port)
+    
+    mailserver.ehlo()
+    mailserver.starttls()
+    mailserver.ehlo()
+
     server.login(username, password)
     server.sendmail(
         sender,
