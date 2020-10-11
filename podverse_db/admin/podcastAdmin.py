@@ -13,12 +13,12 @@ class FeedUrlInline(admin.TabularInline):
         return False
 
 class PodcastAdmin(admin.ModelAdmin):
-    fields = ('id', 'title', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'authorityId', 'description', 'feedLastUpdated',
+    fields = ('id', 'title', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'podcastIndexId', 'authorityId', 'description', 'feedLastUpdated',
         'feedLastParseFailed', 'guid', 'imageUrl', 'isExplicit', 'language', 'lastEpisodePubDate', 'lastEpisodeTitle', 'linkUrl',
         'pastHourTotalUniquePageviews', 'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews',
         'pastMonthTotalUniquePageviews', 'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews',
         'shrunkImageUrl', 'sortableTitle', 'type', 'createdAt', 'updatedAt',)
-    list_display = ('title', 'id', 'authorityId', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'feedLastParseFailed',)
+    list_display = ('title', 'id', 'podcastIndexId', 'authorityId', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'feedLastParseFailed',)
     list_editable = ('isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'feedLastParseFailed',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
@@ -31,6 +31,7 @@ class PodcastAdmin(admin.ModelAdmin):
         elif request.user.groups.filter(name='Admin').exists():
             fields.remove('isPublic')
             fields.remove('title')
+            fields.remove('podcastIndexId')
             fields.remove('authorityId')
             fields.remove('hideDynamicAdsWarning')
             fields.remove('alwaysFullyParse')
@@ -39,6 +40,7 @@ class PodcastAdmin(admin.ModelAdmin):
         elif request.user.groups.filter(name='Curator').exists():
             fields.remove('isPublic')
             fields.remove('title')
+            fields.remove('podcastIndexId')
             fields.remove('authorityId')
             fields.remove('hideDynamicAdsWarning')
             fields.remove('alwaysFullyParse')

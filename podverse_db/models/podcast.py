@@ -9,6 +9,7 @@ class Podcast(models.Model):
     id = models.CharField(max_length=14, primary_key=True, default=shortid)
 
     alwaysFullyParse = models.BooleanField(default=False)
+    podcastIndexId = models.CharField(max_length=2084, blank=True)
     authorityId = models.CharField(max_length=2084, blank=True)
     description = models.TextField(blank=True)
     feedLastParseFailed = models.BooleanField(default=False)
