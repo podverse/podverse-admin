@@ -9,8 +9,8 @@ class Podcast(models.Model):
     id = models.CharField(max_length=14, primary_key=True, default=shortid)
 
     alwaysFullyParse = models.BooleanField(default=False)
-    podcastIndexId = models.CharField(max_length=2084, blank=True)
-    authorityId = models.CharField(max_length=2084, blank=True)
+    podcastIndexId = models.CharField(max_length=2084, blank=True, null=True)
+    authorityId = models.CharField(max_length=2084, blank=True, null=True)
     description = models.TextField(blank=True)
     feedLastParseFailed = models.BooleanField(default=False)
     feedLastUpdated = models.DateTimeField(blank=True)
@@ -43,6 +43,3 @@ class Podcast(models.Model):
     
     def __str__(self):
         return self.title or 'Untitled podcast'
-
-        
-
