@@ -6,7 +6,7 @@ class EpisodeAdmin(admin.ModelAdmin):
         'isExplicit', 'linkUrl', 'mediaFilesize', 'mediaType', 'mediaUrl', 'pastHourTotalUniquePageviews',
         'pastDayTotalUniquePageviews', 'pastWeekTotalUniquePageviews', 'pastMonthTotalUniquePageviews',
         'pastYearTotalUniquePageviews', 'pastAllTimeTotalUniquePageviews', 'pubDate', 'createdAt', 'updatedAt',)
-    list_display = ('title', 'id', 'get_podcast_title', 'pubDate', 'isPublic',)
+    list_display = ('title', 'id', 'get_podcast_title', 'get_podcast_id', 'pubDate', 'isPublic',)
     list_editable = ('isPublic',)
     ordering = ('-updatedAt',)
     search_fields = ('id', 'title',)
@@ -15,6 +15,10 @@ class EpisodeAdmin(admin.ModelAdmin):
     def get_podcast_title(self, obj):
         return obj.podcast.title
     get_podcast_title.short_description = 'Podcast Title'
+
+    def get_podcast_id(self, obj):
+        return obj.podcast.id
+    get_podcast_id.short_description = 'Podcast ID'
 
     def get_readonly_fields(self, request, obj=None):
         fields = [f.name for f in self.model._meta.fields]

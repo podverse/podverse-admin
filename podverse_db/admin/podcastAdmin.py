@@ -36,7 +36,6 @@ class PodcastAdmin(admin.ModelAdmin):
             fields.remove('hideDynamicAdsWarning')
             fields.remove('alwaysFullyParse')
             return fields
-            return ['createdAt', 'updatedAt']
         elif request.user.groups.filter(name='Curator').exists():
             fields.remove('isPublic')
             fields.remove('title')
