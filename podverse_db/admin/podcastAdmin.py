@@ -21,7 +21,7 @@ class PodcastAdmin(admin.ModelAdmin):
     list_display = ('title', 'id', 'podcastIndexId', 'authorityId', 'isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'feedLastParseFailed',)
     list_editable = ('isPublic', 'hideDynamicAdsWarning', 'alwaysFullyParse', 'feedLastParseFailed',)
     ordering = ('-updatedAt',)
-    search_fields = ('id', 'title',)
+    search_fields = ('id', 'title', 'podcastIndexId', 'authorityId',)
     inlines = [ FeedUrlInline ]
 
     def get_readonly_fields(self, request, obj=None):
