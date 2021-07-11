@@ -131,7 +131,7 @@ class Migration(migrations.Migration):
                 ('linkUrl', models.URLField(blank=True)),
                 ('mediaFilesize', models.PositiveIntegerField(default=0)),
                 ('mediaType', models.CharField(blank=True, max_length=2084)),
-                ('mediaUrl', models.URLField(unique=True)),
+                ('mediaUrl', models.URLField()),
                 ('pastHourTotalUniquePageviews', models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Hour')),
                 ('pastDayTotalUniquePageviews', models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Day')),
                 ('pastWeekTotalUniquePageviews', models.PositiveIntegerField(default=0, verbose_name='Pageviews - Past Week')),
